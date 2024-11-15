@@ -1,0 +1,14 @@
+# Enable the Apache URL rewriting engine
+RewriteEngine On
+
+# Set the base URL path for relative URL rewriting to the root directory
+RewriteBase /
+
+# Check if the requested URL does not correspond to an existing file
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# Check if the requested URL does not correspond to an existing directory
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Rewrite the URL by capturing the entire path and appending it as a query parameter to index.php
+RewriteRule ^(.*)$ index.php?$1 [L,QSA]
